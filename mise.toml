@@ -1,2 +1,6 @@
 [tools]
 java = "temurin-25"
+
+[tasks.up]
+description = "Build and run the app with Docker Compose"
+run = "docker compose up --build"
