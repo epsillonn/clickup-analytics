@@ -1,0 +1,6 @@
+*
+!gradlew
+!gradle/wrapper/
+!settings.gradle.kts
+!build.gradle.kts
+!src/
