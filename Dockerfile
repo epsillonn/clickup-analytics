@@ -15,4 +15,6 @@ COPY --from=build /workspace/extracted/dependencies/ ./
 COPY --from=build /workspace/extracted/snapshot-dependencies/ ./
 COPY --from=build /workspace/extracted/application/ ./
 EXPOSE 8080
+HEALTHCHECK --interval=10s --timeout=3s --retries=3 --start-period=30s \
+    CMD ["bash", "-c", "exec 3<>/dev/tcp/localhost/8080 && printf 'GET /actuator/health HTTP/1.0\\r\\n\\r\\n' >&3 && head -1 <&3 | grep -q ' 200 '"]
 ENTRYPOINT ["java", "-jar", "app.jar"]
