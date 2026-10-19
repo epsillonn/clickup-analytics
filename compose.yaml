@@ -1,5 +1,7 @@
 services:
   app:
     build: .
+    environment:
+      PORT: ${PORT}
     ports:
-      - "8080:8080"
+      - "${PORT}:${PORT}"
