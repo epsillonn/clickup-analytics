@@ -1,0 +1,49 @@
+{
+  "id": "4b67ac88-e506-4a29-9d42-26e504e3435e",
+  "webhook": {
+    "id": "4b67ac88-e506-4a29-9d42-26e504e3435e",
+    "userid": 183,
+    "team_id": 108,
+    "endpoint": "https://yourdomain.com/webhook",
+    "client_id": "QVOQP06ZXC6CMGVFKB0ZT7J9Y7APOYGO",
+    "events": [
+      "taskCreated",
+      "taskUpdated",
+      "taskDeleted",
+      "taskPriorityUpdated",
+      "taskStatusUpdated",
+      "taskAssigneeUpdated",
+      "taskDueDateUpdated",
+      "taskTagUpdated",
+      "taskMoved",
+      "taskCommentPosted",
+      "taskCommentUpdated",
+      "taskTimeEstimateUpdated",
+      "taskTimeTrackedUpdated",
+      "listCreated",
+      "listUpdated",
+      "listDeleted",
+      "folderCreated",
+      "folderUpdated",
+      "folderDeleted",
+      "spaceCreated",
+      "spaceUpdated",
+      "spaceDeleted",
+      "goalCreated",
+      "goalUpdated",
+      "goalDeleted",
+      "keyResultCreated",
+      "keyResultUpdated",
+      "keyResultDeleted"
+    ],
+    "task_id": null,
+    "list_id": null,
+    "folder_id": null,
+    "space_id": null,
+    "health": {
+      "status": "active",
+      "fail_count": 0
+    },
+    "secret": "O94IM25S7PXBPYTMNXLLET230SRP0S89COR7B1YOJ2ZIE8WQNK5UUKEF26W0Z5GA"
+  }
+}

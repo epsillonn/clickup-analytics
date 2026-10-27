@@ -1,0 +1,12 @@
+{
+  "fields": [
+    {
+      "id": "5dc86497-098d-4bb0-87d6-cf28e43812e7",
+      "name": "Text Field",
+      "type": "text",
+      "type_config": {},
+      "date_created": "1577378759142",
+      "hide_from_guests": false
+    }
+  ]
+}
