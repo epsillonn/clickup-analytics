@@ -1,0 +1,66 @@
+{
+  "27075wz": {
+    "current_status": {
+      "status": "open",
+      "color": "#d3d3d3",
+      "total_time": {
+        "by_minute": 21830,
+        "since": "1604004423494"
+      }
+    },
+    "status_history": [
+      {
+        "status": "open",
+        "color": "#d3d3d3",
+        "type": "open",
+        "total_time": {
+          "by_minute": 21829,
+          "since": "1604004423494"
+        },
+        "orderindex": 0
+      },
+      {
+        "status": "active status #2",
+        "color": "#5CF1D4",
+        "type": "custom",
+        "total_time": {
+          "by_minute": 23274,
+          "since": "1602607941692"
+        },
+        "orderindex": 4
+      }
+    ]
+  },
+  "20bbn28": {
+    "current_status": {
+      "status": "open",
+      "color": "#d3d3d3",
+      "total_time": {
+        "by_minute": 21830,
+        "since": "1604004420925"
+      }
+    },
+    "status_history": [
+      {
+        "status": "open",
+        "color": "#d3d3d3",
+        "type": "open",
+        "total_time": {
+          "by_minute": 22276,
+          "since": "1604004420925"
+        },
+        "orderindex": 0
+      },
+      {
+        "status": "active status #2",
+        "color": "#5CF1D4",
+        "type": "custom",
+        "total_time": {
+          "by_minute": 40109,
+          "since": "1601597828835"
+        },
+        "orderindex": 4
+      }
+    ]
+  }
+}

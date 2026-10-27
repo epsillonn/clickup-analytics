@@ -1,0 +1,175 @@
+{
+  "id": "b4ced072-ae72-4c70-b898-fea5dd142408:main",
+  "trigger_id": "6f612d16-9ff7-4db2-a2f6-19528ee3b90c",
+  "date": "2024-01-11T19:40:17.927Z",
+  "payload": {
+    "id": "8687096vn",
+    "custom_id": "DEF-43",
+    "custom_item_id": 0,
+    "name": "task name",
+    "text_content": "",
+    "description": "",
+    "status": {
+      "id": "p90090203753_p54073272_p54073128_p54071092_p54067915_r9V2QX7O",
+      "status": "complete",
+      "color": "#008844",
+      "orderindex": 1,
+      "type": "closed"
+    },
+    "orderindex": "39906954.00000000000000000000000000000000",
+    "date_created": "1705002014968",
+    "date_updated": "1705002016108",
+    "date_closed": "1705002016108",
+    "date_done": "1705002016108",
+    "archived": false,
+    "creator": {
+      "id": 26191384,
+      "username": "John",
+      "color": "#5f7c8a",
+      "email": "john@company.com",
+      "profilePicture": "https://attachments.clickup.com/profilePictures/26191384_HoB.jpg"
+    },
+    "assignees": [],
+    "watchers": [
+      {
+        "id": 26191384,
+        "username": "John",
+        "color": "#5f7c8a",
+        "initials": "J",
+        "email": "john@company.com",
+        "profilePicture": "https://attachments.clickup.com/profilePictures/26191384_HoB.jpg"
+      }
+    ],
+    "checklists": [],
+    "tags": [],
+    "parent": null,
+    "priority": null,
+    "due_date": null,
+    "start_date": null,
+    "points": null,
+    "time_estimate": null,
+    "time_spent": 0,
+    "custom_fields": [
+      {
+        "id": "ede917d5-4dbb-46eb-9f7c-5d4f0a652b1f",
+        "name": "ijjb",
+        "type": "formula",
+        "type_config": {
+          "version": "1.6",
+          "is_dynamic": false,
+          "return_types": [
+            "null"
+          ],
+          "calculation_state": "ready"
+        },
+        "date_created": "1698260411360",
+        "hide_from_guests": false,
+        "required": false
+      },
+      {
+        "id": "7d979288-84e1-48b0-abaf-238ecb27e0fa",
+        "name": "formula 1",
+        "type": "currency",
+        "type_config": {
+          "default": null,
+          "precision": 2,
+          "currency_type": "USD"
+        },
+        "date_created": "1694298925344",
+        "hide_from_guests": false,
+        "required": false
+      },
+      {
+        "id": "89bbdeeb-6724-4ec0-a8a7-c21d944199a7",
+        "name": "Marketing Task Type",
+        "type": "drop_down",
+        "type_config": {
+          "default": 0,
+          "placeholder": null,
+          "options": [
+            {
+              "id": "d73a55af-88f5-4161-a948-7341d2bbb045",
+              "name": "Campaign",
+              "color": null,
+              "orderindex": 0
+            },
+            {
+              "id": "0010111d-91da-4cb7-8cc1-d642f90ef194",
+              "name": "asd",
+              "color": null,
+              "orderindex": 1
+            }
+          ]
+        },
+        "date_created": "1698177406311",
+        "hide_from_guests": false,
+        "required": false
+      },
+      {
+        "id": "07119fd9-e1eb-4457-bc69-3e5913707ca2",
+        "name": "files",
+        "type": "attachment",
+        "type_config": {},
+        "date_created": "1700237528128",
+        "hide_from_guests": false,
+        "required": false
+      },
+      {
+        "id": "60392065-eb67-40c3-afe2-10f288d0695d",
+        "name": "new field",
+        "type": "currency",
+        "type_config": {
+          "precision": 2,
+          "currency_type": "EUR"
+        },
+        "date_created": "1696603471462",
+        "hide_from_guests": true,
+        "required": false
+      }
+    ],
+    "dependencies": [],
+    "linked_tasks": [],
+    "locations": [],
+    "team_id": "36003581",
+    "url": "https://app.clickup.com/t/8687096vn",
+    "sharing": {
+      "public": false,
+      "public_share_expires_on": null,
+      "public_fields": [
+        "assignees",
+        "priority",
+        "due_date",
+        "content",
+        "comments",
+        "attachments",
+        "customFields",
+        "subtasks",
+        "tags",
+        "checklists",
+        "coverimage"
+      ],
+      "token": null,
+      "seo_optimized": false
+    },
+    "list": {
+      "id": "901102008938",
+      "name": "List",
+      "access": true
+    },
+    "project": {
+      "id": "90110993233",
+      "name": "test folder",
+      "hidden": false,
+      "access": true
+    },
+    "folder": {
+      "id": "90110993233",
+      "name": "test folder",
+      "hidden": false,
+      "access": true
+    },
+    "space": {
+      "id": "90090203753"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "goals": [
+    {
+      "id": "e53a033c-900e-462d-a849-4a216b06d930",
+      "pretty_id": "6",
+      "name": "Goal ABC",
+      "team_id": "512",
+      "creator": 182,
+      "owner": null,
+      "color": "#32a852",
+      "date_created": "1568044355026",
+      "start_date": null,
+      "due_date": "1568036964079",
+      "description": "Updated Goal Description",
+      "private": false,
+      "archived": false,
+      "multiple_owners": true,
+      "editor_token": "goal:792c3027-83a2-45de-be96-2f623b5f9078:1626303240249:38fd99e8-f989-4125-9a05-19ead0ed83a6:57bdc749-4ca6-4082-a78e-3485ed15e675",
+      "date_updated": "1626130440221",
+      "last_update": "1626132992152",
+      "folder_id": null,
+      "pinned": false,
+      "owners": [],
+      "key_result_count": 1,
+      "members": [
+        {
+          "id": 182,
+          "username": "Jane Doe",
+          "email": "janedoe@gmail.com",
+          "color": "#827718",
+          "permission_level": "edit",
+          "profilePicture": "https://attachments-public.clickup.com/profilePictures/profile.jpg",
+          "initials": "JD",
+          "isCreator": true
+        }
+      ],
+      "group_members": [],
+      "percent_completed": 0
+    }
+  ],
+  "folders": [
+    {
+      "id": "05921253-7737-44af-a1aa-36fd11244e6f",
+      "name": "Quarterly Goals",
+      "team_id": "512",
+      "private": true,
+      "date_created": "1548802674671",
+      "creator": 182,
+      "goal_count": 1,
+      "members": [
+        {
+          "id": 182,
+          "email": "janedoe@gmail.com",
+          "username": "Jane Doe",
+          "color": "#827718",
+          "permission_level": "read",
+          "date_added": 1631599941928,
+          "added_by": 183,
+          "initials": "JD",
+          "profilePicture": "https://attachments-public.clickup.com/profilePictures/profile.jpg"
+        }
+      ],
+      "goals": [
+        {
+          "id": "e53a033c-900e-462d-a849-4a216b06d930",
+          "pretty_id": "8",
+          "name": "Q1 Goals",
+          "team_id": "512",
+          "creator": 182,
+          "owner": null,
+          "color": "#32a852",
+          "date_created": "1568044355026",
+          "start_date": null,
+          "due_date": "1568036964079",
+          "description": "Goal for Q1",
+          "private": false,
+          "archived": false,
+          "multiple_owners": true,
+          "editor_token": "goal:792c3027-83b5-45de-be96-2f623b5f9078:1626303240249:38fd99e8-f989-4125-9a05-19ead0ed83a6:57bdc749-4ca6-4082-a78e-3485fc22d477",
+          "date_updated": "1626130440221",
+          "last_update": "1626132992152",
+          "folder_id": "05921253-7737-44af-a1aa-36fd11244e6f",
+          "folder_access": true,
+          "pinned": false,
+          "owners": [],
+          "key_result_count": 1,
+          "members": [
+            {
+              "id": 182,
+              "username": "Jane Doe",
+              "email": "janedoe@gmail.com",
+              "color": "#827718",
+              "permission_level": "edit",
+              "profilePicture": "https://attachments-public.clickup.com/profilePictures/profile.jpg",
+              "initials": "JD",
+              "isCreator": true
+            }
+          ],
+          "group_members": [],
+          "percent_completed": 1
+        }
+      ]
+    }
+  ]
+}
