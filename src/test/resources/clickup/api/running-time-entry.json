@@ -1,0 +1,30 @@
+{
+  "data": {
+    "id": "timer_id",
+    "task": {
+      "id": "task_id",
+      "name": "task_name",
+      "status": {
+        "status": "to do",
+        "color": "#d3d3d3",
+        "type": "open",
+        "orderindex": 0
+      }
+    },
+    "wid": "workspace_id",
+    "user": {
+      "id": 300528,
+      "username": "first_name last_name",
+      "email": "test@gmail.com",
+      "color": "#08c7e0",
+      "initials": "JK",
+      "profilePicture": "https://attachments-public.clickup.com/profilePictures/1_HHk.jpg"
+    },
+    "billable": false,
+    "start": "1595293042560",
+    "duration": -25655,
+    "description": "",
+    "tags": [],
+    "at": "1595293042560"
+  }
+}

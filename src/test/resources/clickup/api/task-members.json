@@ -1,0 +1,38 @@
+{
+  "members": [
+    {
+      "id": 812,
+      "username": "John Doe",
+      "email": "john@example.com",
+      "color": "#FFFFFF",
+      "initials": "JD",
+      "profilePicture": "https://attachments-public.clickup.com/profilePictures/812_nx1.jpg",
+      "profileInfo": {
+        "display_profile": null,
+        "verified_ambassador": null,
+        "verified_consultant": null,
+        "top_tier_user": null,
+        "viewed_verified_ambassador": null,
+        "viewed_verified_consultant": null,
+        "viewed_top_tier_user": null
+      }
+    },
+    {
+      "id": 813,
+      "username": "Jane Doe",
+      "email": "jane@example.com",
+      "color": null,
+      "initials": "JD",
+      "profilePicture": "https://attachments-public.clickup.com/profilePictures/813_nx1.jpg",
+      "profileInfo": {
+        "display_profile": null,
+        "verified_ambassador": null,
+        "verified_consultant": null,
+        "top_tier_user": null,
+        "viewed_verified_ambassador": null,
+        "viewed_verified_consultant": null,
+        "viewed_top_tier_user": null
+      }
+    }
+  ]
+}

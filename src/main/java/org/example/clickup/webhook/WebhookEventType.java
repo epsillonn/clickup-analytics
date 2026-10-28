@@ -1,0 +1,58 @@
+package org.example.clickup.webhook;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+
+public enum WebhookEventType {
+    ALL("*"),
+    TASK_CREATED("taskCreated"),
+    TASK_UPDATED("taskUpdated"),
+    TASK_DELETED("taskDeleted"),
+    TASK_PRIORITY_UPDATED("taskPriorityUpdated"),
+    TASK_STATUS_UPDATED("taskStatusUpdated"),
+    TASK_ASSIGNEE_UPDATED("taskAssigneeUpdated"),
+    TASK_DUE_DATE_UPDATED("taskDueDateUpdated"),
+    TASK_TAG_UPDATED("taskTagUpdated"),
+    TASK_MOVED("taskMoved"),
+    TASK_COMMENT_POSTED("taskCommentPosted"),
+    TASK_COMMENT_UPDATED("taskCommentUpdated"),
+    TASK_TIME_ESTIMATE_UPDATED("taskTimeEstimateUpdated"),
+    TASK_TIME_TRACKED_UPDATED("taskTimeTrackedUpdated"),
+    LIST_CREATED("listCreated"),
+    LIST_UPDATED("listUpdated"),
+    LIST_DELETED("listDeleted"),
+    FOLDER_CREATED("folderCreated"),
+    FOLDER_UPDATED("folderUpdated"),
+    FOLDER_DELETED("folderDeleted"),
+    SPACE_CREATED("spaceCreated"),
+    SPACE_UPDATED("spaceUpdated"),
+    SPACE_DELETED("spaceDeleted"),
+    GOAL_CREATED("goalCreated"),
+    GOAL_UPDATED("goalUpdated"),
+    GOAL_DELETED("goalDeleted"),
+    KEY_RESULT_CREATED("keyResultCreated"),
+    KEY_RESULT_UPDATED("keyResultUpdated"),
+    KEY_RESULT_DELETED("keyResultDeleted"),
+    /** An event name ClickUp added after this enum was written; it must not fail the whole delivery. */
+    UNKNOWN("unknown");
+
+    private final String value;
+
+    WebhookEventType(String value) {
+        this.value = value;
+    }
+
+    @JsonValue
+    public String value() {
+        return value;
+    }
+
+    @JsonCreator
+    public static WebhookEventType fromValue(String value) {
+        return Arrays.stream(values())
+                .filter(type -> type.value.equals(value))
+                .findFirst()
+                .orElse(UNKNOWN);
+    }
+}

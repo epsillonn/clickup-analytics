@@ -1,0 +1,81 @@
+{
+  "event": "taskUpdated",
+  "history_items": [
+    {
+      "id": "2800771175285296851",
+      "type": 1,
+      "date": "1642735110657",
+      "field": "custom_field",
+      "parent_id": "162641062",
+      "data": {},
+      "source": null,
+      "user": {
+        "id": 183,
+        "username": "John",
+        "email": "john@company.com",
+        "color": "#7b68ee",
+        "initials": "J",
+        "profilePicture": null
+      },
+      "before": null,
+      "after": "5048f827-f16a-47b0-afec-5fd0e51b5f50",
+      "custom_field": {
+        "id": "862a38bb-eaba-4b9b-a4b5-c09d2a8c082f",
+        "name": "Selection Dropdown",
+        "type": "drop_down",
+        "type_config": {
+          "default": 0,
+          "placeholder": null,
+          "new_drop_down": true,
+          "options": [
+            {
+              "id": "5048f827-f16a-47b0-afec-5fd0e51b5f50",
+              "name": "Monthly",
+              "value": "Monthly",
+              "type": "text",
+              "color": null,
+              "orderindex": 0
+            },
+            {
+              "id": "5c69d237-f440-4498-ae46-3b3948db931b",
+              "name": "Quarterly",
+              "value": "Quarterly",
+              "type": "text",
+              "color": null,
+              "orderindex": 1
+            },
+            {
+              "id": "fc4b63d1-d4d5-45fc-bee5-3adef2b15dff",
+              "name": "Yearly",
+              "value": "Yearly",
+              "type": "text",
+              "color": null,
+              "orderindex": 2
+            },
+            {
+              "id": "8c7a4048-53fd-455a-82ba-ecf2a8a4c74d",
+              "name": "here's a really long long long drop down option with a long line of text",
+              "value": "here's a really long long long drop down option with a long line of text",
+              "type": "text",
+              "color": null,
+              "orderindex": 3
+            }
+          ]
+        },
+        "values_set": null,
+        "userid": "2770032",
+        "date_created": "1611729648993",
+        "hide_from_guests": false,
+        "team_id": "6931406",
+        "deleted": false,
+        "deleted_by": null,
+        "pinned": true,
+        "required": false,
+        "required_on_subtasks": false,
+        "linked_subcategory": null
+      }
+    }
+  ],
+  "task_id": "1vj37mc",
+  "webhook_id": "7fa3ec74-69a8-4530-a251-8a13730bd204"
+}
