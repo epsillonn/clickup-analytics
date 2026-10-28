@@ -1,5 +1,42 @@
 spring:
   application:
     name: clickup-analytics
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/clickup_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      # Veritabanı tablolarını Hibernate otomatik oluşturmasın, Flyway doğrulasın
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:guest}
+    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+
+# Custom ClickUp Konfigürasyonu (kök seviyede olmalı)
+clickup:
+  api:
+    base-url: https://api.clickup.com/api/v2
+    access-token: ${CLICKUP_API_TOKEN}
+    client-id: ${CLICKUP_CLIENT_ID}
+    client-secret: ${CLICKUP_CLIENT_SECRET}
+    redirect-uri: ${CLICKUP_REDIRECT_URI}
+  webhook:
+    secret: ${CLICKUP_WEBHOOK_SECRET}
+
 server:
-  port: ${PORT}
+  port: ${PORT:8080}

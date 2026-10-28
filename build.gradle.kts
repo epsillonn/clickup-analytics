@@ -19,11 +19,18 @@ repositories {
 }
 
 dependencies {
+    implementation ("org.postgresql:postgresql")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
+    implementation("org.springframework.boot:spring-boot-starter-amqp")//rabiitmq
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 }
 
 tasks.bootJar {

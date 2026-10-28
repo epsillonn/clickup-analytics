@@ -1,7 +1,76 @@
 services:
-  app:
-    build: .
+  # 1. Veritabanı (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: clickup_analytics_db
+    restart: always
     environment:
-      PORT: ${PORT}
+      POSTGRES_DB: ${DB_NAME:-clickup_db}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
     ports:
-      - "${PORT}:${PORT}"
+      - "${DB_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - clickup_net
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USERNAME:-postgres} -d ${DB_NAME:-clickup_db}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. RabbitMQ Broker
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: clickup_analytics_rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+    ports:
+      - "${RABBITMQ_PORT:-5672}:5672"
+      - "${RABBITMQ_UI_PORT:-15672}:15672"
+    networks:
+      - clickup_net
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 3. Backend (Spring Boot)
+  backend:
+    build: .
+    container_name: clickup_analytics_backend
+    restart: always
+    environment:
+      - PORT=8080
+      - SPRING_DATASOURCE_URL=${DB_URL:-jdbc:postgresql://db:5433/${DB_NAME:-clickup_db}}
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME:-postgres}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-postgres}
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=${RABBITMQ_DEFAULT_USER:-guest}
+      - SPRING_RABBITMQ_PASSWORD=${RABBITMQ_DEFAULT_PASS:-guest}
+      - CLICKUP_API_TOKEN=${CLICKUP_API_TOKEN}
+      - CLICKUP_TEAM_ID=${CLICKUP_TEAM_ID}
+      - CLICKUP_CLIENT_ID=${CLICKUP_CLIENT_ID}
+      - CLICKUP_CLIENT_SECRET=${CLICKUP_CLIENT_SECRET}
+      - CLICKUP_REDIRECT_URI=${CLICKUP_REDIRECT_URI}
+    ports:
+      - "${BACKEND_PORT:-8083}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - clickup_net
+
+networks:
+  clickup_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
