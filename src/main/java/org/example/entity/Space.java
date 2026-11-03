@@ -6,6 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.dto.StatusDto;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="spaces")
@@ -28,7 +34,9 @@ public class Space {
     @Column(name = "is_private")
     private Boolean isPrivate;
 
-    @Column(name = "is_archived")
-    private Boolean isArchived;
+    private Boolean archived;
 
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "statuses", columnDefinition = "jsonb")
+    private List<StatusDto> statuses = new ArrayList<>();
 }

@@ -31,6 +31,14 @@ spring:
 clickup:
   api:
     base-url: https://api.clickup.com/api/v2
+    endpoints:
+      teams: "/team"
+      spaces: "/team/{teamId}/space"
+      folders: "/space/{spaceId}/folder"
+      space_list: "/space/{spaceId}/list"
+      folder_list: "/folder/{folderId}/list"
+      tasks: "/list/{listId}/task"
+
     access-token: ${CLICKUP_API_TOKEN}
     client-id: ${CLICKUP_CLIENT_ID}
     client-secret: ${CLICKUP_CLIENT_SECRET}
@@ -38,5 +46,27 @@ clickup:
   webhook:
     secret: ${CLICKUP_WEBHOOK_SECRET}
 
+jwt:
+  # 1 yıl boyunca sabit kalacak 256-bit güvenli anahtar (HS256)
+  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+  # 0 = Süresiz (Token zamana bağlı değişmez, hep aynı kalır ve süresi dolmaz)
+  expiration-ms: ${JWT_EXPIRATION_MS:0}
+
+app:
+  # OAuth sonrası kullanıcıların yönlendirileceği Frontend Dashboard adresi
+  frontend-url: ${FRONTEND_URL:http://localhost/dashboard}
+
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8083}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+logging:
+  level:
+    root: INFO
+    org.example: DEBUG # Kendi paketinin log seviyesini DEBUG yapıyoruz
+    org.hibernate.SQL: DEBUG # SQL sorgularını detaylı görmek istersen

@@ -1,10 +1,7 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name="folders")
@@ -12,6 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Folder {
     @Id
     @Column(name="id",nullable=false)
@@ -24,6 +22,6 @@ public class Folder {
     private Space space;
 
     private Boolean hidden;
-
+    private Boolean archived;
 
 }

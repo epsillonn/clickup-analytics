@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -18,6 +19,7 @@ public class User {
     @Column(name="profile_picture")
     private String profilePicture;
 
-
-
+    @Builder.Default
+    @Column(name="role")
+    private String role = "DEVELOPER";
 }

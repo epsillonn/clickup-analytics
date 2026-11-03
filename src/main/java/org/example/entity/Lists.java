@@ -1,13 +1,16 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.example.dto.FolderResponseDto;
+import org.example.dto.StatusDto;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Builder
 @Entity
 @Table(name="lists")
 @Getter
@@ -30,12 +33,33 @@ public class Lists {
     @JoinColumn(name = "folder_id")
     private Folder folder;
 
+    @Column(name = "start_date")
+    private String startDate;
+
+    @Column(name = "due_date")
+    private String dueDate;
+
     @Column(name="task_count")
     private Integer taskCount;
 
-   // @JdbcTypeCode(SqlTypes.JSON)
-   // @Column(name = "statuses", columnDefinition = "jsonb")
-   // private List<ClickUpStatusDto> statuses = new ArrayList<>();
+    @Column(name = "parent_task_count")
+    private Integer parentTaskCount;
+
+    @Column(name = "total_task_count")
+    private Integer totalTaskCount;
+
+    @Column(name = "subtask_count")
+    private Integer subtaskCount;
+
+    private Boolean archived;
+
+    @Column(name = "override_statuses")
+    private Boolean overrideStatuses;
+
+   @JdbcTypeCode(SqlTypes.JSON)
+   @Column(name = "statuses", columnDefinition = "jsonb")
+   @Builder.Default
+   private List<StatusDto> statuses = new ArrayList<>();
 
 
 
