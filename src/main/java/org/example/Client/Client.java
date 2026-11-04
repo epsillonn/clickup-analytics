@@ -22,7 +22,8 @@ public class Client {
     // --- Auth Endpoints ---
 
     public OAuthDto.Response getAccessToken(String code) {
-        return restClient.post()
+        return restClient
+                .post()
                 .uri(uriBuilder -> uriBuilder
                         .path("/oauth/token")
                         .queryParam("client_id", properties.api().clientId())
@@ -34,7 +35,8 @@ public class Client {
     }
 
     public UserDto getAuthorizedUser(String accessToken) {
-        UserWrapper wrapper = restClient.get()
+        UserWrapper wrapper = restClient
+                .get()
                 .uri("/user")
                 .header("Authorization", accessToken)
                 .retrieve()
@@ -46,7 +48,8 @@ public class Client {
     // --- Data Sync Endpoints ---
 
     public WorkspaceResponseDto getWorkspaces(String accessToken) {
-        return restClient.get()
+        return restClient
+                .get()
                 .uri(properties.api().endpoints().teams())
                 .header("Authorization", accessToken)
                 .retrieve()
@@ -54,7 +57,8 @@ public class Client {
     }
 
     public SpaceResponseDto getSpaces(String workspaceId, String accessToken) {
-        return restClient.get()
+        return restClient
+                .get()
                 .uri(properties.api().endpoints().spaces(), workspaceId)
                 .header("Authorization", accessToken)
                 .retrieve()
@@ -62,7 +66,8 @@ public class Client {
     }
 
     public FolderResponseDto getFolders(String spaceId, String accessToken) {
-        return restClient.get()
+        return restClient
+                .get()
                 .uri(properties.api().endpoints().folders(), spaceId)
                 .header("Authorization", accessToken)
                 .retrieve()
@@ -70,7 +75,8 @@ public class Client {
     }
 
     public ListResponseDto getFolderlessLists(String spaceId, String accessToken) {
-        return restClient.get()
+        return restClient
+                .get()
                 .uri(properties.api().endpoints().spaceList(), spaceId)
                 .header("Authorization", accessToken)
                 .retrieve()
@@ -78,7 +84,8 @@ public class Client {
     }
 
     public ListResponseDto.ListDto getList(String listId, String accessToken) {
-        return restClient.get()
+        return restClient
+                .get()
                 .uri("/list/{listId}", listId)
                 .header("Authorization", accessToken)
                 .retrieve()
@@ -86,7 +93,8 @@ public class Client {
     }
 
     public ListResponseDto getFolderLists(String folderId, String accessToken) {
-        return restClient.get()
+        return restClient
+                .get()
                 .uri("/folder/{folderId}/list", folderId)
                 .header("Authorization", accessToken)
                 .retrieve()
@@ -94,7 +102,8 @@ public class Client {
     }
 
     public TaskResponseDto getTasks(String listId, String accessToken) {
-        return restClient.get()
+        return restClient
+                .get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/list/{listId}/task")
                         .queryParam("subtasks", true)

@@ -1,5 +1,6 @@
 package org.example.services;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.Client.Client;
@@ -17,8 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.List;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -31,7 +30,6 @@ public class TaskService {
     private final Client client;
     private final TaskMapper taskMapper;
 
-
     @Transactional
     public void syncListTasks(String listId, String userAccessToken) {
         TaskResponseDto response;
@@ -42,13 +40,15 @@ public class TaskService {
 
         } catch (HttpClientErrorException.Unauthorized e) {
             // 401 OAUTH_192 hatasını yakalar, loglar ve bu listeyi atlayarak transaction rollback'ini engeller
-            log.warn("List ID: {} için yetki bulunamadı (401 Unauthorized / OAUTH_192). Liste atlanıyor. Hata: {}",
-                    listId, e.getMessage());
+            log.warn(
+                    "List ID: {} için yetki bulunamadı (401 Unauthorized / OAUTH_192). Liste atlanıyor. Hata: {}",
+                    listId,
+                    e.getMessage());
             return;
         } catch (Exception e) {
             // tüm senkronizasyonu düşürmez
-            log.error("List ID: {} görevleri çekilirken hata oluştu. Liste atlanıyor. Hata: {}",
-                    listId, e.getMessage());
+            log.error(
+                    "List ID: {} görevleri çekilirken hata oluştu. Liste atlanıyor. Hata: {}", listId, e.getMessage());
             return;
         }
 
@@ -57,14 +57,14 @@ public class TaskService {
             return;
         }
 
-        Lists list = listRepository.findById(listId)
+        Lists list = listRepository
+                .findById(listId)
                 .orElseThrow(() -> new RuntimeException("Liste veritabanında bulunamadı: " + listId));
         List<TaskResponseDto.TaskDto> tasks = response.tasks() == null ? List.of() : response.tasks();
 
         for (TaskResponseDto.TaskDto taskDto : tasks) {
             try {
-                Task task = taskRepository.findById(taskDto.id())
-                        .orElseGet(Task::new);
+                Task task = taskRepository.findById(taskDto.id()).orElseGet(Task::new);
 
                 // Alanların DTO'dan Entity'ye aktarımı (MapStruct)
                 taskMapper.updateEntityFromDto(taskDto, task);
@@ -79,7 +79,9 @@ public class TaskService {
                         Long creatorId = Long.valueOf(taskDto.creator().id().toString());
                         userRepository.findById(creatorId).ifPresent(task::setCreator);
                     } catch (NumberFormatException e) {
-                        log.warn("Task Creator ID sayıya dönüştürülemedi: {}", taskDto.creator().id());
+                        log.warn(
+                                "Task Creator ID sayıya dönüştürülemedi: {}",
+                                taskDto.creator().id());
                     }
                 }
 
@@ -87,7 +89,8 @@ public class TaskService {
                 if (taskDto.parent() != null && !taskDto.parent().isBlank()) {
                     taskRepository.findById(taskDto.parent()).ifPresent(task::setParent);
                 }
-                if (taskDto.topLevelParent() != null && !taskDto.topLevelParent().isBlank()) {
+                if (taskDto.topLevelParent() != null
+                        && !taskDto.topLevelParent().isBlank()) {
                     taskRepository.findById(taskDto.topLevelParent()).ifPresent(task::setTopLevelParent);
                 }
 
@@ -106,8 +109,12 @@ public class TaskService {
         list.setSubtaskCount(Math.max(0, totalTaskCount - parentTaskCount));
         listRepository.save(list);
 
-        log.info("List ID: {} için {} görev senkronize edildi (parent: {}, subtask: {}).",
-                listId, totalTaskCount, list.getParentTaskCount(), list.getSubtaskCount());
+        log.info(
+                "List ID: {} için {} görev senkronize edildi (parent: {}, subtask: {}).",
+                listId,
+                totalTaskCount,
+                list.getParentTaskCount(),
+                list.getSubtaskCount());
     }
 
     private void syncTaskAssignees(Task task, List<UserDto> assigneesDto) {
@@ -125,10 +132,8 @@ public class TaskService {
                 try {
                     Long userId = Long.valueOf(userDto.id().toString());
                     userRepository.findById(userId).ifPresent(user -> {
-                        TaskAssignee taskAssignee = TaskAssignee.builder()
-                                .task(task)
-                                .user(user)
-                                .build();
+                        TaskAssignee taskAssignee =
+                                TaskAssignee.builder().task(task).user(user).build();
                         taskAssigneeRepository.save(taskAssignee);
                     });
                 } catch (NumberFormatException e) {

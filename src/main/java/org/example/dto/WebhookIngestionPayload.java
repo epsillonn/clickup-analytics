@@ -13,5 +13,4 @@ public class WebhookIngestionPayload {
     private String rawJsonPayload;
     private String deliveryId;
     private String webhookId;
-
 }

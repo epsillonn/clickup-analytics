@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,12 +14,14 @@ public class User {
 
     @Id
     private Long id;
+
     private String username;
     private String email;
-    @Column(name="profile_picture")
+
+    @Column(name = "profile_picture")
     private String profilePicture;
 
     @Builder.Default
-    @Column(name="role")
+    @Column(name = "role")
     private String role = "DEVELOPER";
 }

@@ -1,5 +1,7 @@
 package org.example.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.Client.Client;
 import org.example.dto.UserDto;
@@ -14,9 +16,6 @@ import org.example.repository.WorkspaceMemberRepository;
 import org.example.repository.WorkspaceRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -43,8 +42,7 @@ public class WorkspaceService {
         for (WorkspaceResponseDto.WorkspaceDto teamDto : response.teams()) {
             workspaceIds.add(teamDto.id());
 
-            Workspace workspace = workspaceRepository.findById(teamDto.id())
-                    .orElseGet(Workspace::new);
+            Workspace workspace = workspaceRepository.findById(teamDto.id()).orElseGet(Workspace::new);
 
             workspaceMapper.updateEntityFromDto(teamDto, workspace);
             workspaceRepository.save(workspace);
@@ -74,8 +72,7 @@ public class WorkspaceService {
     private User saveOrUpdateUser(UserDto userDto) {
         if (userDto == null) return null;
 
-        User user = userRepository.findById(userDto.id())
-                .orElseGet(User::new);
+        User user = userRepository.findById(userDto.id()).orElseGet(User::new);
 
         userMapper.updateEntityFromDto(userDto, user);
 

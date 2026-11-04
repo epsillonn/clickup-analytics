@@ -7,12 +7,15 @@ public enum ClickupRole {
     GUEST("guest");
 
     private final String key;
-    ClickupRole(String key){
+
+    ClickupRole(String key) {
         this.key = key;
     }
-    public String getKey(){
+
+    public String getKey() {
         return key;
     }
+
     public static ClickupRole fromKey(String roleKey) {
         if (roleKey == null) return null;
         for (ClickupRole role : ClickupRole.values()) {
@@ -22,5 +25,4 @@ public enum ClickupRole {
         }
         return null;
     }
-
 }

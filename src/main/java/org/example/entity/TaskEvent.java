@@ -1,11 +1,10 @@
 package org.example.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="task_events")
+@Table(name = "task_events")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,7 +14,6 @@ public class TaskEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id", nullable = false)
@@ -58,5 +56,4 @@ public class TaskEvent {
     @Column(name = "trigger_source", length = 50)
     @Builder.Default
     private String triggerSource = "WEBHOOK";
-
 }

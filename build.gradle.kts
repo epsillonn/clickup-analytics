@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation ("org.postgresql:postgresql")
+    implementation("org.postgresql:postgresql")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -27,7 +27,7 @@ dependencies {
     implementation("com.github.ua-parser:uap-java:1.5.4")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
-    implementation("org.springframework.boot:spring-boot-starter-amqp")//rabiitmq
+    implementation("org.springframework.boot:spring-boot-starter-amqp") // rabiitmq
     implementation("io.jsonwebtoken:jjwt-api:0.12.5")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5")

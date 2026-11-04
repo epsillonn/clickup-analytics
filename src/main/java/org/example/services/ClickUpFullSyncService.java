@@ -1,5 +1,6 @@
 package org.example.services;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.entity.Lists;
@@ -7,8 +8,6 @@ import org.example.entity.Space;
 import org.example.repository.ListRepository;
 import org.example.repository.SpaceRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Slf4j
 @Service

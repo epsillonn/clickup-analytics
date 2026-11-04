@@ -30,13 +30,13 @@ public class FolderService {
             return;
         }
 
-        Space space = spaceRepository.findById(spaceId)
+        Space space = spaceRepository
+                .findById(spaceId)
                 .orElseThrow(() -> new RuntimeException("Space bulunamadı: " + spaceId));
 
         for (FolderResponseDto.FolderDto folderDto : response.folders()) {
 
-            Folder folder = folderRepository.findById(folderDto.id())
-                    .orElseGet(Folder::new);
+            Folder folder = folderRepository.findById(folderDto.id()).orElseGet(Folder::new);
 
             folderMapper.updateEntityFromDto(folderDto, folder);
             folder.setSpace(space);

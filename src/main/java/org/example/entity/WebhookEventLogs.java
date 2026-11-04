@@ -1,17 +1,14 @@
 package org.example.entity;
 
-
 import jakarta.persistence.*;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.w3c.dom.Text;
-
-import java.sql.Timestamp;
 
 @Entity
-@Table(name="webhook_event_logs")
+@Table(name = "webhook_event_logs")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,8 +18,8 @@ public class WebhookEventLogs {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="webhook_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "webhook_id")
     private Webhook webhook;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -49,5 +46,4 @@ public class WebhookEventLogs {
 
     @Column(name = "processed_at")
     private Timestamp processedAt;
-
 }

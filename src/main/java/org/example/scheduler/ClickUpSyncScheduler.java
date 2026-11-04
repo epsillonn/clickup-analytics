@@ -14,7 +14,7 @@ public class ClickUpSyncScheduler {
      * Her 60.000 ms (1 dakika) çalışır.
      * fixedRate: Metot bittikten sonra değil, başlama zamanından itibaren süreyi sayar.
      */
-    @Scheduled(fixedRate = 60000) 
+    @Scheduled(fixedRate = 60000)
     public void runPeriodicSync() {
         log.info("Zamanlanmış ClickUp senkronizasyonu başlatıldı.");
     }

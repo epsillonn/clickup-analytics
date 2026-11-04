@@ -1,10 +1,9 @@
 package org.example.mapper;
 
+import org.example.dto.TaskEventResponseDto;
 import org.example.entity.TaskEvent;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.example.dto.TaskEventResponseDto;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface TaskEventMapper {

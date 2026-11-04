@@ -1,7 +1,8 @@
 package org.example.entity;
 
-
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +11,8 @@ import org.example.dto.StatusDto;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-@Table(name="spaces")
+@Table(name = "spaces")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,7 +20,7 @@ import java.util.List;
 public class Space {
 
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name = "id", nullable = false)
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)

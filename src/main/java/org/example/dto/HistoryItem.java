@@ -12,6 +12,4 @@ public record HistoryItem(
         JsonNode source,
         JsonNode user,
         JsonNode before,
-        JsonNode after
-) {
-}
+        JsonNode after) {}

@@ -1,10 +1,9 @@
 package org.example.entity;
 
-
 import jakarta.persistence.*;
+import java.sql.Timestamp;
 import lombok.*;
 
-import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,7 +11,6 @@ import java.sql.Timestamp;
 @Entity
 @Builder
 @Table(name = "task_assignees")
-
 public class TaskAssignee {
 
     @Id
@@ -20,14 +18,13 @@ public class TaskAssignee {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn (name="task_id")
+    @JoinColumn(name = "task_id")
     private Task task;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name="assigned_at")
+    @Column(name = "assigned_at")
     private Timestamp assignedAt;
-
 }

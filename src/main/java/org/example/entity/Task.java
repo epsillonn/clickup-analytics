@@ -1,11 +1,10 @@
 package org.example.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
-
 @Entity
-@Table(name="tasks")
+@Table(name = "tasks")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,37 +12,37 @@ import java.sql.Timestamp;
 @Builder
 public class Task {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     private String id;
 
     private String name;
 
-    @Column(name="status_name")
+    @Column(name = "status_name")
     private String statusName;
 
-    @Column(name="status_type")
+    @Column(name = "status_type")
     private String statusType;
 
     @ManyToOne()
-    @JoinColumn(name="workspace_id")
+    @JoinColumn(name = "workspace_id")
     private Workspace workspace;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
     @ManyToOne()
-    @JoinColumn(name="list_id")
+    @JoinColumn(name = "list_id")
     private Lists lists;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="parent")
-    private Task parent;//taskid fk olucak
+    @JoinColumn(name = "parent")
+    private Task parent; // taskid fk olucak
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="top_level_parent")
+    @JoinColumn(name = "top_level_parent")
     private Task topLevelParent;
 
-    @Column(name="time_estimate")
+    @Column(name = "time_estimate")
     private String timeEstimate;
 
     private String priority;
@@ -62,13 +61,13 @@ public class Task {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")
-    private User creator; //belki assignee tablosunda olabilir
+    private User creator; // belki assignee tablosunda olabilir
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "blocked_by_task_id")
     private Task blockedByTaskId; // bu da aslında fk task ıd olacak
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="location_id")
-    private Lists list; //? list ıd yani string
+    @JoinColumn(name = "location_id")
+    private Lists list; // ? list ıd yani string
 }

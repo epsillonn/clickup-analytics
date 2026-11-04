@@ -9,6 +9,4 @@ public record LoginLogDto(
         String browser,
         @JsonProperty("operating_system") String operatingSystem,
         @JsonProperty("device_model") String deviceModel,
-        @JsonProperty("logged_in_at") Long loggedInAt
-) {
-}
+        @JsonProperty("logged_in_at") Long loggedInAt) {}

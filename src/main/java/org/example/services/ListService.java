@@ -1,5 +1,6 @@
 package org.example.services;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.Client.Client;
@@ -16,8 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.List;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -28,7 +27,6 @@ public class ListService {
     private final SpaceRepository spaceRepository;
     private final ListMapper listMapper;
 
-
     @Transactional
     public void syncSpaceLists(String spaceId, String userAccessToken) {
         ListResponseDto response;
@@ -37,8 +35,10 @@ public class ListService {
             log.info("Space ID: {} için klasörsüz listeler ClickUp API'den isteniyor...", spaceId);
             response = client.getFolderlessLists(spaceId, userAccessToken);
         } catch (HttpClientErrorException.Unauthorized e) {
-            log.warn("Space ID: {} listeleri için yetki bulunamadı (401 Unauthorized / OAUTH_192). Atlanıyor. Hata: {}",
-                    spaceId, e.getMessage());
+            log.warn(
+                    "Space ID: {} listeleri için yetki bulunamadı (401 Unauthorized / OAUTH_192). Atlanıyor. Hata: {}",
+                    spaceId,
+                    e.getMessage());
             return;
         } catch (Exception e) {
             log.error("Space ID: {} listeleri çekilirken hata oluştu: {}", spaceId, e.getMessage());
@@ -50,12 +50,12 @@ public class ListService {
             return;
         }
 
-        Space space = spaceRepository.findById(spaceId)
+        Space space = spaceRepository
+                .findById(spaceId)
                 .orElseThrow(() -> new RuntimeException("Space veritabanında bulunamadı: " + spaceId));
 
         for (ListResponseDto.ListDto listDto : response.lists()) {
-            Lists list = listRepository.findById(listDto.id())
-                    .orElseGet(Lists::new);
+            Lists list = listRepository.findById(listDto.id()).orElseGet(Lists::new);
 
             listMapper.updateEntityFromDto(listDto, list);
 
@@ -68,30 +68,25 @@ public class ListService {
             listRepository.save(list);
         }
 
-        log.info("Space ID: {} için {} adet klasörsüz liste başarıyla senkronize edildi.", spaceId, response.lists().size());
+        log.info(
+                "Space ID: {} için {} adet klasörsüz liste başarıyla senkronize edildi.",
+                spaceId,
+                response.lists().size());
     }
 
-    public void saveFolderList(
-            FolderResponseDto.ListDto listDto,
-            Folder folder,
-            Space space,
-            String accessToken) {
+    public void saveFolderList(FolderResponseDto.ListDto listDto, Folder folder, Space space, String accessToken) {
         Lists list = listRepository.findById(listDto.id()).orElseGet(Lists::new);
         listMapper.updateEntityFromDto(listDto, list);
         list.setFolder(folder);
         list.setSpace(space);
         list.setParentTaskCount(listDto.taskCount());
-        list.setStatuses(resolveStatuses(
-                listDto.id(), listDto.overrideStatuses(), listDto.statuses(), space, accessToken));
+        list.setStatuses(
+                resolveStatuses(listDto.id(), listDto.overrideStatuses(), listDto.statuses(), space, accessToken));
         listRepository.save(list);
     }
 
     private List<StatusDto> resolveStatuses(
-            String listId,
-            Boolean overrideStatuses,
-            List<StatusDto> listStatuses,
-            Space space,
-            String accessToken) {
+            String listId, Boolean overrideStatuses, List<StatusDto> listStatuses, Space space, String accessToken) {
         if (!Boolean.TRUE.equals(overrideStatuses)) {
             return space.getStatuses() == null ? List.of() : space.getStatuses();
         }

@@ -16,15 +16,17 @@ public class WorkspaceVerificationService {
 
     public boolean verifyWorkspaceAccess(String workspaceId, String accessToken) {
         try {
-            return clickUpRestClient.get()
-                    .uri(uriBuilder -> uriBuilder
-                            .path("/team/{workspaceId}/space")
-                            .queryParam("archived", false)
-                            .build(workspaceId))
-                    .header("Authorization", accessToken)
-                    .retrieve()
-                    .toBodilessEntity()
-                    .getStatusCode() == HttpStatus.OK;
+            return clickUpRestClient
+                            .get()
+                            .uri(uriBuilder -> uriBuilder
+                                    .path("/team/{workspaceId}/space")
+                                    .queryParam("archived", false)
+                                    .build(workspaceId))
+                            .header("Authorization", accessToken)
+                            .retrieve()
+                            .toBodilessEntity()
+                            .getStatusCode()
+                    == HttpStatus.OK;
         } catch (HttpClientErrorException.Unauthorized e) {
             log.warn("ClickUp token is not authorized for workspace {}.", workspaceId);
             return false;

@@ -1,10 +1,8 @@
 package org.example.dto;
 
 import java.sql.Timestamp;
-import java.time.OffsetDateTime;
 
-public class WebhookResponseDto
-{
+public class WebhookResponseDto {
     private String id;
     private String workspaceId;
     private String endpointUrl;
@@ -15,5 +13,4 @@ public class WebhookResponseDto
     private Long createdByUserId;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-
 }

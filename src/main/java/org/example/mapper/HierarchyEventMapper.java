@@ -7,5 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface HierarchyEventMapper {
     HierarchyEventResponseDto toDto(HierarchyEvent entity);
+
     HierarchyEvent toEntity(HierarchyEventResponseDto dto);
 }

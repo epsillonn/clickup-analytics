@@ -1,4 +1,5 @@
 package org.example.dto;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record UserDto(
@@ -8,7 +9,4 @@ public record UserDto(
         @JsonProperty("profilePicture") String profilePicture,
         @JsonProperty("role_key") String roleKey,
         @JsonProperty("date_invited") String dateInvited,
-        @JsonProperty("date_joined") String dateJoined
-
-) {
-}
+        @JsonProperty("date_joined") String dateJoined) {}

@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.AuthResponseDto;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -25,25 +24,26 @@ public class AuthController {
     @Value("${app.frontend-url:http://localhost/dashboard}")
     private String frontendUrl;
 
-    @GetMapping(value = {"/api/auth/callback", "/"}, params = "code")
-    public ResponseEntity<Void> handleOAuthCallback(
-            @RequestParam("code") String code,
-            HttpServletRequest request) {
+    @GetMapping(
+            value = {"/api/auth/callback", "/"},
+            params = "code")
+    public ResponseEntity<Void> handleOAuthCallback(@RequestParam("code") String code, HttpServletRequest request) {
 
-        log.info("HTTP GET {} OAuth callback isteği alındı. Remote IP: {}",
-                request.getRequestURI(), request.getRemoteAddr());
+        log.info(
+                "HTTP GET {} OAuth callback isteği alındı. Remote IP: {}",
+                request.getRequestURI(),
+                request.getRemoteAddr());
 
         // 1. OAuth akışı, senkronizasyon ve JWT üretimini çalıştır
         AuthResponseDto response = authService.oauthCallback(code, request);
 
         // 2. Kullanıcının ilk/varsayılan Workspace ID'si
-        String defaultWorkspaceId = (response.workspaces() != null && !response.workspaces().isEmpty())
-                ? response.workspaces().get(0).id()
-                : "";
+        String defaultWorkspaceId =
+                (response.workspaces() != null && !response.workspaces().isEmpty())
+                        ? response.workspaces().get(0).id()
+                        : "";
 
-        String role = (response.user().getRole() != null)
-                ? response.user().getRole()
-                : "DEVELOPER";
+        String role = (response.user().getRole() != null) ? response.user().getRole() : "DEVELOPER";
 
         // 3. Frontend Dashboard için yönlendirme URL'ini güvenli şekilde inşa et
         String targetUrl = UriComponentsBuilder.fromUriString(frontendUrl)

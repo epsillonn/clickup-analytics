@@ -5,17 +5,16 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import javax.crypto.SecretKey;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.config.JwtProperties;
 import org.example.entity.User;
 import org.springframework.stereotype.Service;
-
-import javax.crypto.SecretKey;
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -60,15 +59,11 @@ public class JwtService {
      * Böylece üretilen token hem süresiz olur hem de her çağrıda birebir aynı kalır.
      */
     public String generateToken(Map<String, Object> extraClaims, String subject) {
-        var builder = Jwts.builder()
-                .claims(extraClaims)
-                .subject(subject)
-                .signWith(getSigningKey());
+        var builder = Jwts.builder().claims(extraClaims).subject(subject).signWith(getSigningKey());
 
         if (jwtProperties.expirationMs() > 0) {
             long now = System.currentTimeMillis();
-            builder.issuedAt(new Date(now))
-                   .expiration(new Date(now + jwtProperties.expirationMs()));
+            builder.issuedAt(new Date(now)).expiration(new Date(now + jwtProperties.expirationMs()));
         }
 
         return builder.compact();
@@ -76,10 +71,7 @@ public class JwtService {
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser()
-                    .verifyWith(getSigningKey())
-                    .build()
-                    .parseSignedClaims(token);
+            Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
             log.warn("Geçersiz JWT Token: {}", e.getMessage());

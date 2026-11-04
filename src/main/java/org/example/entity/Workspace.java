@@ -1,13 +1,13 @@
 package org.example.entity;
+
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
-@Table(name="workspaces")
+@Table(name = "workspaces")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,7 +18,4 @@ public class Workspace {
     private String id;
 
     private String name;
-
-
-
 }

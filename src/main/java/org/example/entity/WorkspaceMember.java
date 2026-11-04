@@ -1,8 +1,8 @@
 package org.example.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.enums.ClickupRole;
-
 
 @Entity
 @AllArgsConstructor
@@ -10,19 +10,19 @@ import org.example.enums.ClickupRole;
 @Getter
 @Setter
 @Builder
-@Table(name="workspace_member")
+@Table(name = "workspace_member")
 public class WorkspaceMember {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; //şart mı
+    private Long id; // şart mı
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="workspace_id")
+    @JoinColumn(name = "workspace_id")
     private Workspace workspace;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
@@ -30,14 +30,12 @@ public class WorkspaceMember {
     private User invitedBy;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable=true)
+    @Column(nullable = true)
     private ClickupRole role;
 
-    @Column(name="date_invited")
-    private  String dateInvited;
+    @Column(name = "date_invited")
+    private String dateInvited;
 
     @Column(name = "date_joined")
     private String dateJoined;
-
-
 }

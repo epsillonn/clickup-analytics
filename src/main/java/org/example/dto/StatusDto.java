@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record StatusDto(
         String id,
         String status,
-        @JsonProperty("orderindex")
-        Integer orderIndex,
+        @JsonProperty("orderindex") Integer orderIndex,
         String color,
-        String type
-) {}
+        String type) {}

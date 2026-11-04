@@ -2,7 +2,6 @@ package org.example.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import java.util.Arrays;
 
 public enum WebhookSubscribedEvent {
@@ -17,7 +16,6 @@ public enum WebhookSubscribedEvent {
     TASK_TIME_TRACKED_UPDATED("taskTimeTrackedUpdated"),
     TASK_MOVED("taskMoved"),
     TASK_TAG_UPDATED("taskTagUpdated"),
-
 
     LIST_CREATED("listCreated"),
     LIST_UPDATED("listUpdated"),
@@ -35,22 +33,20 @@ public enum WebhookSubscribedEvent {
 
     private final String eventName;
 
-
-
     WebhookSubscribedEvent(String eventName) {
         this.eventName = eventName;
     }
-    @JsonValue
 
+    @JsonValue
     public String getEventName() {
         return eventName;
     }
+
     @JsonCreator
     public static WebhookSubscribedEvent fromEventName(String eventName) {
         return Arrays.stream(values())
                 .filter(type -> type.getEventName().equals(eventName))
                 .findFirst()
                 .orElse(UNSUPPORTED);
-
     }
 }

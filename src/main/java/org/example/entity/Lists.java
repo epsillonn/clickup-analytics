@@ -1,18 +1,16 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.*;
-import org.example.dto.FolderResponseDto;
 import org.example.dto.StatusDto;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Builder
 @Entity
-@Table(name="lists")
+@Table(name = "lists")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +18,7 @@ import java.util.List;
 public class Lists {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     private String id;
 
     private String name;
@@ -39,7 +37,7 @@ public class Lists {
     @Column(name = "due_date")
     private String dueDate;
 
-    @Column(name="task_count")
+    @Column(name = "task_count")
     private Integer taskCount;
 
     @Column(name = "parent_task_count")
@@ -56,13 +54,8 @@ public class Lists {
     @Column(name = "override_statuses")
     private Boolean overrideStatuses;
 
-   @JdbcTypeCode(SqlTypes.JSON)
-   @Column(name = "statuses", columnDefinition = "jsonb")
-   @Builder.Default
-   private List<StatusDto> statuses = new ArrayList<>();
-
-
-
-
-
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "statuses", columnDefinition = "jsonb")
+    @Builder.Default
+    private List<StatusDto> statuses = new ArrayList<>();
 }
