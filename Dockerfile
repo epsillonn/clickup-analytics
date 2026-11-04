@@ -2,6 +2,7 @@ FROM eclipse-temurin:25-jdk AS build
 WORKDIR /workspace
 COPY gradlew settings.gradle.kts build.gradle.kts ./
 COPY gradle gradle
+RUN sed -i 's/\r$//' gradlew && chmod +x gradlew
 RUN --mount=type=cache,target=/root/.gradle ./gradlew dependencies --no-daemon > /dev/null
 COPY src src
 RUN --mount=type=cache,target=/root/.gradle ./gradlew bootJar --no-daemon
@@ -12,6 +13,7 @@ WORKDIR /app
 RUN useradd --system --no-create-home spring
 USER spring
 COPY --from=build /workspace/extracted/dependencies/ ./
+COPY --from=build /workspace/extracted/spring-boot-loader/ ./
 COPY --from=build /workspace/extracted/snapshot-dependencies/ ./
 COPY --from=build /workspace/extracted/application/ ./
 HEALTHCHECK --interval=10s --timeout=3s --retries=3 --start-period=30s \
