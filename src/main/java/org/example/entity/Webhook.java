@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="webhooks")
@@ -16,21 +16,24 @@ import java.security.Timestamp;
 @AllArgsConstructor
 public class Webhook {
     @Id
-    @Column(name="id")
-    private String id;
+    @Column(name="id", nullable = false)
+    private String id;//webhhok id pk olucak? yoksa ekstra ıd mı olmalı webhook id pk olmamalımı
 
     @OneToOne
-    @JoinColumn(name="workspace_id")
+    @JoinColumn(name="workspace_id" ,nullable = false)
     private Workspace workspace;
 
+    @Column(name = "endpoint_url", nullable = false, length = 500)
+    private String endpointUrl; // URL ? belkide dbde olmamalı just env enough
+
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="created_by_user")
+    @JoinColumn(name="created_by_user", nullable = false)
     private User user;
 
-    @Column(name="secret")
+    @Column(name="secret", nullable = false)
     private String secret;
 
-    @Column(name="status")
+    @Column(name="status", nullable = false)
     private String status;
 
     @Column(name="fail_count")
@@ -38,6 +41,9 @@ public class Webhook {
 
     @Column(name="created_at")
     private Timestamp createdAt;
+
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
 
 
 }
